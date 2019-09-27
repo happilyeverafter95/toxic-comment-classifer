@@ -8,12 +8,13 @@ from typing import Optional, Dict, Callable
 model: Optional[ModelLSTM] = None
 
 def train():
-    data = DataPipeline().preprocess()
+    data = DataPipeline()
+    data.preprocess()
     global model
-    model = ModelLSTM().train(data.train)
+    model = ModelLSTM()
+    model.train(data.train)
     f1 = model.assess_model_performance(data.test)
     print('Model sucessfully trained with test f1 '.format({f1}))
-
 
 def predict(text: str) -> Dict[str, str]:
     if model is None:
