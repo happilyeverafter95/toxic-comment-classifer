@@ -1,10 +1,14 @@
+import os
+import re
+import logging
+import datetime
+
 import numpy as np
 import pandas as pd
-import os
 import tensorflow as tf
 
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Dense, Embedding, Input, LSTM, Bidirectional, GlobalMaxPooling1D, Dropout
+from tensorflow.keras.layers import Dense, Embedding, Input, LSTM, CuDNNLSTM, Bidirectional, GlobalMaxPooling1D, Dropout
 from tensorflow.keras.preprocessing import text, sequence
 from tensorflow.python.saved_model import tag_constants
 
@@ -12,7 +16,8 @@ from sklearn.metrics import f1_score
 from typing import Optional, Dict
 
 class ModelLSTM:
-    def __init__(self):
+    def __init__(self, use_cuda: bool):
+        self.use_cuda: bool
         self.epochs = 20
         self.max_features = 10000
         self.max_len = 100
@@ -38,14 +43,18 @@ class ModelLSTM:
         y = self.one_hot_encode(y)
         X = self.fit_tokenizer(X)
 
-        export_path = os.path.join(os.getcwd(), 'saved_model/1')
+        version = re.sub('[^0-9]', '', str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
+        export_path = os.path.join(os.getcwd(), 'saved_model/'.format(version))
 
-        model = Sequential([
-            Embedding(self.max_features, self.embed_size),
-            Bidirectional(LSTM(250, return_sequences=True)),
-            GlobalMaxPooling1D(),
-            Dense(2, activation='softmax')
-        ])
+        model = Sequential()
+        model.add(Embedding(self.max_features, self.embed_size))
+        if self.use_cuda:
+            model.add(Bidirectional(CuDNNLSTM(250, return_sequences=True)))
+        else:
+            model.add(Bidirectional(LSTM(250, return_sequences=True)))
+        model.add(GlobalMaxPooling1D())
+        model.add(Dense(2, activation='softmax'))
+                
         model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
         model.fit(X, y, batch_size=self.batch_size, epochs=self.epochs)
 
@@ -54,6 +63,8 @@ class ModelLSTM:
             export_path,
             inputs={'input': model.input},
             outputs={'output': model.output})
+        
+        logging.info('New model saved to {}'.format(export_path))
 
     def assess_model_performance(self, data: pd.DataFrame) -> float:
         assert self.model is not None, 'ERROR: no model trained'
