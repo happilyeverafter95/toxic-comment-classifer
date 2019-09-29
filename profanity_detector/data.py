@@ -10,9 +10,6 @@ from config import KAGGLE_USERNAME, KAGGLE_KEY
 
 kaggle.api.authenticate()
 
-os.environ['KAGGLE_USERNAME'] = KAGGLE_USERNAME
-os.environ['KAGGLE_KEY'] = KAGGLE_KEY
-
 class DataPipeline:
     def __init__(self):
         self.preprocessing_steps = [self.lowercase,
