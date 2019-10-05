@@ -6,7 +6,6 @@ import numpy as np
 import kaggle 
 
 from typing import Optional
-from config import KAGGLE_USERNAME, KAGGLE_KEY
 
 kaggle.api.authenticate()
 
