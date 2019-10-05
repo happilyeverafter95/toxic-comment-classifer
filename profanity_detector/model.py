@@ -52,7 +52,7 @@ class ModelLSTM:
     def create_tensorflow_session(self):
         # define model meta data
         version = re.sub('[^0-9]', '', str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')))
-        export_path = os.path.join(os.getcwd(), 'saved_model/{}'.format(version))
+        export_path = os.path.join(os.getcwd(), 'model/{}'.format(version))
 
         # define look up table for tokenizer
         tags = list(self.tokenizer.word_index.keys())
