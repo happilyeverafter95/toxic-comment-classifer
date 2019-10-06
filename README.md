@@ -1,6 +1,6 @@
 # Toxic Comment Classifier
 
-Restructure and simplified my [solution to Kaggle's Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge) for deployment.
+Restructured and simplified my [solution to Kaggle's Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge) for deployment.
 
 See [Accompanying Medium Article]() for background and more detail.
 
@@ -10,7 +10,7 @@ Install all requirements packages using `pip install -r requirements.txt`
 
 This repo uses the Kaggle API to fetch the data sets. The Kaggle API requires a bit more work setting up:
 1. Create a Kaggle account
-2. Generate an API token from `kaggle.com/USERNAME/accounts`
+2. Generate an API token from `kaggle.com/USERNAME/account` (it will prompt you to download a `kaggle.json` file which contains the credentials)
 3. Set Kaggle credentials as environment variables: 
 ```
 export KAGGLE_USERNAME = [kaggle username]
