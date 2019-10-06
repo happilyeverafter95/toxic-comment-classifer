@@ -9,7 +9,7 @@ See [Accompanying Medium Article]() for background and more detail.
 Install all requirements packages using `pip install -r requirements.txt`
 
 This repo uses the Kaggle API to fetch the data sets. The Kaggle API requires a bit more work setting up:
-1. Create a Kaggle account
+1. Create a Kaggle account and [accept the competition rules](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge/rules)
 2. Generate an API token from `kaggle.com/USERNAME/account` (it will prompt you to download a `kaggle.json` file which contains the credentials)
 3. Set Kaggle credentials as environment variables: 
 ```
