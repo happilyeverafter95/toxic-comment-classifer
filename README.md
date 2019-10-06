@@ -27,13 +27,12 @@ Instructions paraphrased from the TensorFlow Serving repo.
 
 1. Install Docker
 2. Fetch the latest version of TensorFlow Serving Docker `docker pull tensorflow/serving:latest`
-3. Clone the TensorFlow repo `git clone https://github.com/tensorflow/serving`
-4. Specify the directory for export. In the root directory of this repo, run `ModelPath="$(pwd)/model"`
+3. Specify the directory for export. In the root directory of this repo, run `ModelPath="$(pwd)/model"`
 
 To start the server: 
 ```
 docker run -t --rm -p 8501:8501 \
-    -v "$ModelPath/models/toxic_comment_classifier" \
+    -v "$ModelPath/:/models/toxic_comment_classifier" \
     -e MODEL_NAME=toxic_comment_classifier \
     tensorflow/serving
 ```
