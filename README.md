@@ -2,7 +2,7 @@
 
 Restructured and simplified my [solution to Kaggle's Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge) for deployment.
 
-See [Accompanying Medium Article]() for background and more detail.
+See [Accompanying Medium Article](https://medium.com/@mandygu/deploying-kaggle-solution-with-tensorflow-serving-part-1-of-2-803391c9648) for background and more detail.
 
 ## Usage Requirements
 
