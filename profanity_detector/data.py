@@ -1,9 +1,8 @@
 import os
-import subprocess
 import zipfile
 import pandas as pd
 import numpy as np
-import kaggle 
+import kaggle
 
 from typing import Optional
 
@@ -45,4 +44,3 @@ class DataPipeline:
             return 'unknown'
         else:
             return text
-    

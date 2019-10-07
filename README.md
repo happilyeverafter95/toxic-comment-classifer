@@ -19,7 +19,7 @@ export KAGGLE_KEY = [generated key]
 
 ## Serve the Model
 
-Run `python profanity_detector/main.py` which fetches the data, trains the model and exports a `SavedModel` file into the `/models` path. The `SavedModel` subdirectory can be used to serve the model using [TensorFlow Serving](https://github.com/tensorflow/serving).
+Run `python profanity_detector/main.py` which fetches the data, trains the model and exports a `SavedModel` file into the `/model` path. The `SavedModel` subdirectory can be used to serve the model using [TensorFlow Serving](https://github.com/tensorflow/serving).
 
 ### Start the Server
 
