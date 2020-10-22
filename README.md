@@ -1,3 +1,5 @@
+For serving a text classifier in TensorFlow 2.X, check out [my tensorflow-serving-2.0 example](https://github.com/happilyeverafter95/tensorflow-serving-2.0).
+
 # Toxic Comment Classifier
 
 Restructured and simplified my [solution to Kaggle's Toxic Comment Classification Challenge](https://www.kaggle.com/c/jigsaw-toxic-comment-classification-challenge) for deployment.
